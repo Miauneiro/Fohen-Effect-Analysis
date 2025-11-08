@@ -32,7 +32,7 @@ The analysis visualizes the orographic lifting, condensation (precipitation), an
 
 The analysis generates the following Skew-T diagram, plotting the full thermodynamic path.
 
-![Skew-T Diagram of Föhn Effect in Madeira](outputs/skewt_diagram.png)
+![Skew-T Diagram of Föhn Effect in Madeira](outputs/image.png)
 
 ## Project Structure
 
