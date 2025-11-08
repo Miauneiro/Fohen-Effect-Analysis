@@ -1,0 +1,28 @@
+{
+  "windward": {
+    "pressure": 1000,
+    "temperature": 20,
+    "dewpoint": 10.5,
+    "mixing_ratio": 8
+  },
+  "leeward": {
+    "pressure": 1000,
+    "temperature": 30,
+    "dewpoint": 1.4,
+    "mixing_ratio": 4.2
+  },
+  "path_points": {
+    "lcl_ascent": {
+      "pressure": 870,
+      "temperature": 8.4
+    },
+    "summit": {
+      "pressure": 400,
+      "temperature": -32
+    },
+    "lcl_descent": {
+      "pressure": 655,
+      "temperature": -4.5
+    }
+  }
+}
