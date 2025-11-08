@@ -1,0 +1,4 @@
+metpy
+matplotlib
+numpy
+jupyter
