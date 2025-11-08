@@ -1,6 +1,21 @@
+import json
+import os
 from metpy.units import units
 from .skewt_plot import FoehnEffectAnalyzer # Imports your class
 
+# --- NEW: Define the path to the data file ---
+# This builds a path from this file (src/ther...) up to the project root, 
+# and then down into the data/ folder.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEFAULT_DATA_PATH = os.path.join(BASE_DIR, 'data', 'madeira_observations.json')
+
+# --- NEW: Helper function to load the data ---
+def load_observation_data(data_file_path=DEFAULT_DATA_PATH):
+    """Loads observation data from a JSON file."""
+    with open(data_file_path, 'r') as f:
+        return json.load(f)
+
+# --- UPDATED: Main analysis function ---
 def analyze_madeira_fohen_effect():
     """
     Main analysis function for Madeira Island Föhn effect.
@@ -14,34 +29,45 @@ def analyze_madeira_fohen_effect():
     FoehnEffectAnalyzer
         Analyzer object with complete analysis
     """
+    
+    # --- NEW: Load data from JSON instead of hard-coding ---
+    data = load_observation_data()
+    
+    # Unpack data from the loaded dictionary
+    north = data['windward']
+    south = data['leeward']
+    path = data['path_points']
+
+    # Define atmospheric observations from the data
+    # Windward side (North Coast)
+    north_pressure = north['pressure']
+    north_temp = north['temperature']
+    north_dewpoint = north['dewpoint']
+    north_mixing_ratio = north['mixing_ratio']
+    
+    # Leeward side (South Coast - Funchal)
+    south_pressure = south['pressure']
+    south_temp = south['temperature']
+    south_dewpoint = south['dewpoint']
+    south_mixing_ratio = south['mixing_ratio']
+    
+    # Lifting Condensation Level (ascent)
+    lcl_ascent_pressure = path['lcl_ascent']['pressure']
+    lcl_ascent_temp = path['lcl_ascent']['temperature']
+    
+    # Summit
+    summit_pressure = path['summit']['pressure']
+    summit_temp = path['summit']['temperature']
+    
+    # Lifting Condensation Level (descent)
+    lcl_descent_pressure = path['lcl_descent']['pressure']
+    lcl_descent_temp = path['lcl_descent']['temperature']
+    
+    # --- The rest of the function is the same as before ---
+    
     # Initialize analyzer
     analyzer = FoehnEffectAnalyzer(fig_size=(12, 10))
     analyzer.configure_diagram()
-    
-    # Define atmospheric observations
-    # Windward side (North Coast)
-    north_pressure = 1000  # hPa
-    north_temp = 20  # °C
-    north_dewpoint = 10.5  # °C
-    north_mixing_ratio = 8  # g/kg
-    
-    # Leeward side (South Coast - Funchal)
-    south_pressure = 1000  # hPa
-    south_temp = 30  # °C
-    south_dewpoint = 1.4  # °C
-    south_mixing_ratio = 4.2  # g/kg
-    
-    # Lifting Condensation Level (ascent)
-    lcl_ascent_pressure = 870  # hPa
-    lcl_ascent_temp = 8.4  # °C
-    
-    # Summit
-    summit_pressure = 400  # hPa
-    summit_temp = -32  # °C
-    
-    # Lifting Condensation Level (descent)
-    lcl_descent_pressure = 655  # hPa
-    lcl_descent_temp = -4.5  # °C
     
     # Set conditions
     analyzer.set_initial_conditions(north_pressure, north_temp, 
