@@ -1,7 +1,8 @@
 metpy
 matplotlib
 numpy
+scipy
+pandas
+streamlit
 jupyter
-"" 
-"# Interactive Dashboard" 
-"streamlit>=1.28.0" 
+notebook
