@@ -1,7 +1,5 @@
 # Föhn Effect Analysis - Madeira Island
 
-:: In your project folder, open README.md and add this at the top:
-
 **[🔴 Live Demo](https://fohen-effect-analysis.streamlit.app)**
 
 This project conducts a meteorological analysis of the Föhn (or Foehn) effect on Madeira Island. Using data from the windward (North) and leeward (South) sides of the island, it leverages `metpy` and `matplotlib` to plot the complete thermodynamic path of an air parcel on a Skew-T Log-P diagram.
